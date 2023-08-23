@@ -3,6 +3,8 @@ import { NavController } from '@ionic/angular';
 import { MyHttpServiceService } from '../service/my-http-service.service';
 import { catchError } from 'rxjs';
 import { AlertServiceService } from '../service/alert-service.service';
+import { I_authentification } from '../interface/authentification';
+import { AuthstorageService } from '../service/authstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private httpService: MyHttpServiceService,
-    private alertService: AlertServiceService
+    private alertService: AlertServiceService,
+    private storageService: AuthstorageService
     ) { }
 
   ngOnInit() {
@@ -54,10 +57,11 @@ export class LoginPage implements OnInit {
           throw error;
         })
       )
-      .subscribe(response => {
-        console.log(response);
+      .subscribe((data_user: I_authentification) => {
+        this.storageService.saveToken(data_user.token)
+        console.log(data_user);
         // Traitez la réponse ici
-        // this.navCtrl.navigateForward(['/home']);
+        this.navCtrl.navigateForward(['/home']);
       });
   }
 

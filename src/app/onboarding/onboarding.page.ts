@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicSlides, NavController } from '@ionic/angular';
+import { AuthstorageService } from '../service/authstorage.service';
 
 
 @Component({
@@ -10,12 +11,20 @@ import { IonicSlides, NavController } from '@ionic/angular';
 export class OnboardingPage implements OnInit {
 
 
-  constructor( private navCtrl : NavController ) {}
+  constructor(
+    private navCtrl : NavController,
+    private storageService : AuthstorageService
+    ) {}
   ngOnInit(): void {
+
   }
 
   navToLogin() {
-    this.navCtrl.navigateForward('/login');
+    this.storageService.isLoggedIn().then(()=>{
+      this.navCtrl.navigateForward('/home')
+    }).catch(()=>{
+      this.navCtrl.navigateForward('/login');
+    })
   }
 
 }

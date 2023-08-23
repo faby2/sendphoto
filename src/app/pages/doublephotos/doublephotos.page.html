@@ -1,0 +1,10 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>doublephotos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <input type="file" (change)="onFileChange($event)">
+  <button (click)="uploadFile()">Envoyer</button>
+</ion-content>

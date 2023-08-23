@@ -14,4 +14,8 @@ export class HomePage {
     this.navCtrl.navigateForward('/login');
   }
 
+  navToDoublePhoto() {
+    this.navCtrl.navigateForward('/doublephotos');
+  }
+
 }

@@ -8,10 +8,10 @@
     </ion-buttons> -->
 
     <ion-buttons slot="end">
-      <ion-button routerLink="/login" fill="outline" shape="round" >
+      <ion-button (click)="navToLogin()" fill="outline" shape="round" >
         Entrer
       </ion-button>
-    </ion-buttons> 
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <div class="menu-header-bg"></div>
@@ -20,7 +20,7 @@
   <swiper-container
     [pagination]="true">
     <swiper-slide   >
-      <div class="header">       
+      <div class="header">
         <img src="../../assets/images/log.PNG" alt="logo" srcset="">
           <h1 >Documentations 1</h1>
           <p>
@@ -32,7 +32,7 @@
     </swiper-slide>
 
     <swiper-slide   >
-      <div class="header">       
+      <div class="header">
         <img src="../../assets/images/log.PNG" alt="logo" srcset="">
         <h1>Instruction 2</h1>
         <p>
@@ -44,7 +44,7 @@
     </swiper-slide>
 
     <swiper-slide   >
-      <div class="header">       
+      <div class="header">
         <img src="../../assets/images/log.PNG" alt="logo" srcset="">
         <h1>Instructions 3</h1>
         <p>
@@ -56,7 +56,7 @@
     </swiper-slide>
 
     <swiper-slide   >
-      <div class="header">       
+      <div class="header">
         <img src="../../assets/images/log.PNG" alt="logo" srcset="">
         <h1>Instruction 4</h1>
         <p>
