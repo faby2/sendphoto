@@ -8,9 +8,26 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'onboarding',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'onboarding',
+    loadChildren: () => import('./onboarding/onboarding.module').then( m => m.OnboardingPageModule)
+  },
+  {
+    path: 'setting',
+    loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
+  },  {
+    path: 'photo',
+    loadChildren: () => import('./photo/photo.module').then( m => m.PhotoPageModule)
+  },
+
+
 ];
 
 @NgModule({

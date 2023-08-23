@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicSlides } from '@ionic/angular';
+import { IonicSlides, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,10 @@ import { IonicSlides } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor( private navCtrl : NavController ) {}
+
+  navToLogin() {
+    this.navCtrl.navigateForward('/login');
+  }
 
 }

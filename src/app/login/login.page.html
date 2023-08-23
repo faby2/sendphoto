@@ -1,0 +1,90 @@
+<div class="menu-header-bg"></div>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title   color="primary">
+      Authentification
+    </ion-title> -->
+    <ion-buttons slot="start">
+      <ion-button routerLink="/onboarding" >
+        <ion-icon slot="icon-only" name="arrow-back"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button routerLink="/home" color="primary">
+        Sing Up
+      </ion-button>
+    </ion-buttons>  -->
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content >
+    <div id="header">
+      <h1></h1>
+      <img src="../../assets/images/log.PNG" alt="Logo de l'application">
+    </div>
+    <div class="content-form">
+      <form id="form">
+        <ion-item lines="full">
+          <ion-input type="password" [(ngModel)]="password" placeholder="code" name="password" required></ion-input>
+        </ion-item>
+
+        <ion-button (click)="onLoginFormSubmit()" expand="block" shape="round" color="primary">Se connecter</ion-button>
+
+      </form>
+    </div>
+</ion-content> -->
+
+
+<ion-content fullscreen="true">
+  <ion-grid>
+    <!-- <ion-row class="row-top-bg">
+      <ion-col>
+      </ion-col>
+    </ion-row> -->
+    <ion-row class="content-login">
+      <ion-col>
+        <div>
+
+          <div id="header">
+            <h1></h1>
+            <img src="../../assets/images/log.PNG" alt="Logo de l'application">
+          </div>
+          <div class="content-form">
+            <form id="form">
+
+              <ion-item lines="full" class="ion-margin">
+                <ion-input type="email" [(ngModel)]="email" placeholder="email" name="email" required></ion-input>
+              </ion-item>
+
+              <ion-item lines="full" class="ion-margin">
+                <ion-input type="password" [(ngModel)]="password" placeholder="code" name="password" required></ion-input>
+              </ion-item>
+
+              <ion-button class="ion-margin" (click)="onLoginFormSubmit()" expand="block" shape="round" color="primary">Se connecter</ion-button>
+
+            </form>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="row-footer-bg">
+      <ion-col>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>
+
+<div class="menu-footer-bg"></div>
+<!-- <ion-footer  class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="navToLogin()">
+        <ion-icon slot="start" name="person-circle"></ion-icon>
+        Entrer
+      </ion-button>
+    </ion-buttons>
+ </ion-toolbar>
+</ion-footer> -->
+
+
+

@@ -1,3 +1,42 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+   <ion-menu menuId="main-menu" contentId="main">
+    <ion-content>
+      <!-- <div class="menu-header-bg"></div> -->
+      <div class="header-content">
+        <img src="../assets/images/avatar-modifier.png" alt="">
+        <ion-label>
+          <h2>Dr. hama fsdf</h2>
+          <p>Dermafsdf </p>
+        </ion-label>
+      </div>
+
+      <!-- <div class="action-button">
+        <ion-button>
+          <ion-icon slot="start" name="add"></ion-icon>
+          Add Branch
+        </ion-button>
+      </div> -->
+      <ion-list class="menu-items" lines="none">
+        <!-- <ion-item class="active">
+          <ion-button expand="block">
+            <ion-icon slot="start" name="pie-chart-outline" ></ion-icon>Dashboard
+            sdf
+          </ion-button>
+        </ion-item> -->
+        <ion-item>
+          <ion-icon name="browsers-outline" ></ion-icon>Accueil
+        </ion-item>
+        <ion-item>
+          <ion-icon name="key"></ion-icon>
+          <!-- <ion-icon name="chatbubble-ellipses-outline" ></ion-icon> -->
+          Parametres
+        </ion-item>
+        <ion-item>
+          <ion-icon name="exit-outline" ></ion-icon>Deconnexion
+        </ion-item>
+      </ion-list>
+    </ion-content>
+   </ion-menu>
+
+  <ion-router-outlet id="main" ></ion-router-outlet>
 </ion-app>
