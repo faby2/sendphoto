@@ -174,3 +174,8 @@ ion-content {
 // swiper-container::part(bullet-active) {
 //   background-color: red;
 // }
+.swiper-pagination-bullet-active {
+  margin: 0 var(--swiper-pagination-bullet-horizontal-gap,4px);
+  width: 17px !important;
+  height: 17px;
+}

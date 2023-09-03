@@ -1,10 +1,90 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/onboarding" color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>doublephotos</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button class="btn-enter" shape="round" expand="block" >
+        <!-- <ion-icon name="add-outline"></ion-icon> -->
+        <ion-chip class="add">
+         + 
+        </ion-chip>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <input type="file" (change)="onFileChange($event)">
   <button (click)="uploadFile()">Envoyer</button>
+</ion-content> -->
+<!-- <ion-content> 
+  <ion-list>
+    <ion-item>
+      <ion-label>Choix d'envoie</ion-label>
+      <ion-select >
+        <ion-select-option value="apples">Apples</ion-select-option>
+        <ion-select-option value="oranges">Oranges</ion-select-option>
+        <ion-select-option value="bananas">Bananas</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Ajourd'hui
+      </ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of items; let index">
+      <ion-avatar slot="start">
+        <img src="../../../assets/images/profil.png" alt="avatar" />
+      </ion-avatar>
+      <ion-label>{{ item.name }}</ion-label>
+      
+      <ion-chip *ngIf="item.send">
+        <!-- <ion-icon name="add" color="primary"></ion-icon> -->
+        <ion-label >Enoyé</ion-label>
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-chip>
+
+      <!-- <ion-chip *ngIf="!item.send">
+        <ion-label >Non Enoyé</ion-label>
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-chip> -->
+   
+    </ion-item>
+ 
+  </ion-list>
 </ion-content>
+<ion-footer  class="ion-no-border">
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="images-outline"></ion-icon>
+          Doubles photos
+        </ion-tab-button>
+        <ion-tab-button tab="radio">
+          <ion-icon name="image-outline"></ion-icon>
+          Mes photos
+        </ion-tab-button>
+        <ion-tab-button tab="library">
+          <ion-icon name="home-outline"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button tab="search">
+          <ion-icon name="log-out-outline"></ion-icon>
+          Logout
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs> 
+</ion-toolbar>
+</ion-footer>

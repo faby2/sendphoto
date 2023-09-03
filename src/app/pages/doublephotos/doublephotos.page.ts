@@ -3,6 +3,8 @@ import { FileUploadServiceService } from '../../service/file-upload-service.serv
 import { catchError } from 'rxjs';
 import { AlertServiceService } from 'src/app/service/alert-service.service';
 import { AuthstorageService } from 'src/app/service/authstorage.service';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { I_photoItem } from 'src/app/interface/photostorage';
 
 @Component({
   selector: 'app-doublephotos',
@@ -13,6 +15,7 @@ export class DoublephotosPage implements OnInit {
 
   selectedFile: File | undefined;
   token: any;
+  items: I_photoItem[] = [];
 
   constructor(
     private fileUploadService: FileUploadServiceService,
@@ -46,6 +49,27 @@ export class DoublephotosPage implements OnInit {
 
   ngOnInit() {
     this.token = this.storageService.getToken()
+    this.generateItems();
+  }
+
+  private generateItems() {
+    const count  = this.items.length + 1;
+    // let send : boolean = true;
+    for (let i : number = 0; i < 50; i++) {
+      let photo_temp : I_photoItem = {
+        name: `Item ${count + i}`,
+        date : new Date(),
+        send : (i%2) == 0 ? true : false
+      }
+      this.items.push(photo_temp);
+    }
+  }
+
+  onIonInfinite(ev : any) {
+    this.generateItems();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
   }
 
 }
