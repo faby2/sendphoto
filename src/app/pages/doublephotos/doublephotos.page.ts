@@ -3,8 +3,9 @@ import { FileUploadServiceService } from '../../service/file-upload-service.serv
 import { catchError } from 'rxjs';
 import { AlertServiceService } from 'src/app/service/alert-service.service';
 import { AuthstorageService } from 'src/app/service/authstorage.service';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { I_photoItem } from 'src/app/interface/photostorage';
+import { PicPhotoPage } from '../pic-photo/pic-photo.page';
 
 @Component({
   selector: 'app-doublephotos',
@@ -16,11 +17,13 @@ export class DoublephotosPage implements OnInit {
   selectedFile: File | undefined;
   token: any;
   items: I_photoItem[] = [];
+  message = 'This modal example uses the modalController to present and dismiss modals.';
 
   constructor(
     private fileUploadService: FileUploadServiceService,
     private alertService : AlertServiceService,
-    private storageService : AuthstorageService
+    private storageService : AuthstorageService,
+    private modalCtrl: ModalController
     ) {}
 
   onFileChange(event: any) {
@@ -70,6 +73,19 @@ export class DoublephotosPage implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: PicPhotoPage,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
+    }
   }
 
 }

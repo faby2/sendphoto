@@ -8,7 +8,7 @@
     <ion-title>doublephotos</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button class="btn-enter" shape="round" expand="block" >
+      <ion-button class="btn-enter" shape="round" expand="block"  (click)="openModal()">
         <!-- <ion-icon name="add-outline"></ion-icon> -->
         <ion-chip class="add">
          + 
@@ -54,6 +54,14 @@
         <ion-label >Enoyé</ion-label>
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-chip>
+      <!-- <ion-chip > -->
+        <!-- <ion-icon name="add" color="primary"></ion-icon> -->
+        <!-- <ion-label > -->
+          <!-- supprimer -->
+        <!-- </ion-label> -->
+        <!-- <ion-icon name="close-outline"></ion-icon> -->
+      <!-- </ion-chip> -->
+      
 
       <!-- <ion-chip *ngIf="!item.send">
         <ion-label >Non Enoyé</ion-label>
