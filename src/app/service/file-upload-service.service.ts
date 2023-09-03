@@ -11,14 +11,26 @@ export class FileUploadServiceService {
 
   uploadFile(file: File, token:string): Observable<any> {
     const formData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('photo', file, file.name);
+    formData.append('date', '15/12/2023');
 
     // const headers = new HttpHeaders();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-    });
-    headers.append('Content-Type', 'multipart/form-data'); // Ne pas définir directement "Content-Type"
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${token}`,
+    // });
 
-    return this.http.post(this.url, formData, { headers });
+    const headers = {
+      Authorization: "Bearer 18|Q7m3vUMhWFmfDua6W6DhbeeBtQO2tWPD4pCD5x4H",
+    };
+
+
+    // headers.append('Content-Type', 'multipart/form-data'); // Ne pas définir directement "Content-Type"
+    const options = {
+      headers,
+      processData: false,
+      mimeType: "multipart/form-data",
+      contentType: false,
+    };
+    return this.http.post(this.url, formData, options);
   }
 }
