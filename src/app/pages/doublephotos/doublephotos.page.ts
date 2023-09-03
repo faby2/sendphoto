@@ -6,6 +6,7 @@ import { AuthstorageService } from 'src/app/service/authstorage.service';
 import { InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { I_photoItem } from 'src/app/interface/photostorage';
 import { PicPhotoPage } from '../pic-photo/pic-photo.page';
+import { TakePictureComponent } from 'src/app/component/take-picture/take-picture.component';
 
 @Component({
   selector: 'app-doublephotos',
@@ -77,7 +78,7 @@ export class DoublephotosPage implements OnInit {
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: PicPhotoPage,
+      component: TakePictureComponent,
     });
     modal.present();
 
