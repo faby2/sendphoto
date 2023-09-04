@@ -162,15 +162,20 @@ ion-content {
   // z-index: 1;
   // background: rgb(2,0,36);
   // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
-  background: rgb(2,0,36);
-  background: -moz-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
-  background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
+  // background: rgb(2,0,36);
+  // background: -moz-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
+  // background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
+  // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
+  background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
+  // --ion-background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
 
 
 }
-
+// :root {
+//   // --ion-background-color: linear-gradient(90deg, #c1cddb 0%, #00d4ff 100%);
+//   // --ion-background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
+// }
 // swiper-container::part(bullet-active) {
 //   background-color: red;
 // }
