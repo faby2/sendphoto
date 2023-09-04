@@ -1,16 +1,25 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <ion-chip class="add" slot="start">
+      Annuler  
+    </ion-chip>
     <ion-title>Welcome</ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <ion-chip slot="end" class="add">
+      Save <ion-icon name="checkmark-outline"> </ion-icon>
+    </ion-chip>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
   <ion-item>
     <ion-input labelPlacement="stacked" label="Enter your name" [(ngModel)]="name" placeholder="Your name"></ion-input>
   </ion-item>
+  <div class="container-img">
+    <ion-img src="../../../assets/icon/camera-button-icon-3.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+  </div>
 </ion-content>
