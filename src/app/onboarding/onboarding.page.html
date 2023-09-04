@@ -7,14 +7,25 @@
       </ion-button>
     </ion-buttons> -->
 
-    <ion-buttons slot="end">
-      <ion-button (click)="navToLogin()" fill="outline" shape="round" >
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="navToLogin()" >
         Entrer
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <!-- <ion-item slot="end"> -->
+      <ion-buttons slot="end">
+
+        <ion-button class="btn-enter" shape="round" expand="block" (click)="navToLogin()">
+          <!-- <ion-icon slot="start" name="person-circle"></ion-icon> -->
+          <!-- Entrer -->
+          
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <!-- </ion-item> -->
   </ion-toolbar>
 </ion-header>
-<div class="menu-header-bg"></div>
+<!-- <div class="menu-header-bg"></div> -->
 
 <ion-content [fullscreen]="true" class="ion-padding" >
   <swiper-container
@@ -72,11 +83,16 @@
 <div class="menu-footer-bg"></div>
 <ion-footer  class="ion-no-border">
   <ion-toolbar>
-    <!-- <ion-buttons slot="secondary">
-      <ion-button (click)="navToLogin()">
-        <ion-icon slot="start" name="person-circle"></ion-icon>
-        Entrer
-      </ion-button>
-    </ion-buttons> -->
+    <!-- <ion-buttons slot="secondary"> -->
+      <!-- <ion-item slot="end">
+
+        <ion-button class="btn-enter" shape="round" expand="block" (click)="navToLogin()"> -->
+          <!-- <ion-icon slot="start" name="person-circle"></ion-icon> -->
+          <!-- Entrer -->
+          
+          <!-- <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item> -->
+    <!-- </ion-buttons> -->
  </ion-toolbar>
 </ion-footer>

@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'doublephotos',
     loadChildren: () => import('./pages/doublephotos/doublephotos.module').then( m => m.DoublephotosPageModule)
   },
+  {
+    path: 'pic-photo',
+    loadChildren: () => import('./pages/pic-photo/pic-photo.module').then( m => m.PicPhotoPageModule)
+  },
 
 
 ];

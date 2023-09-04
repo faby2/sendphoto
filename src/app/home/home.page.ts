@@ -15,6 +15,8 @@ export class HomePage {
   }
 
   navToDoublePhoto() {
+    // console.log('fsdf')
+    // this.navCtrl.navigateForward('/doublephotos');
     this.navCtrl.navigateForward('/doublephotos');
   }
 

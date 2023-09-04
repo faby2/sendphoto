@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DoublephotosPageRoutingModule } from './doublephotos-routing.module';
 
 import { DoublephotosPage } from './doublephotos.page';
+import { TakePictureComponent } from 'src/app/component/take-picture/take-picture.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DoublephotosPage } from './doublephotos.page';
     IonicModule,
     DoublephotosPageRoutingModule
   ],
-  declarations: [DoublephotosPage]
+  declarations: [DoublephotosPage,TakePictureComponent]
 })
 export class DoublephotosPageModule {}

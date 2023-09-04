@@ -16,7 +16,7 @@ ion-toolbar {
 
 ion-content {
   .flex {
-    display: grid;
+    display: flex;
     align-items: center;
     height: 60%;
     margin: atu;
@@ -27,6 +27,15 @@ ion-content {
     width: 100%;
     height: 100%;
   }
+
+  ion-label {
+    padding-top: 34px;
+    padding-bottom: 19px;
+  }
+}
+
+ion-tab-bar {
+  height: 77px;
 }
 
 

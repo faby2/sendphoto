@@ -3,6 +3,10 @@ import { FileUploadServiceService } from '../../service/file-upload-service.serv
 import { catchError } from 'rxjs';
 import { AlertServiceService } from 'src/app/service/alert-service.service';
 import { AuthstorageService } from 'src/app/service/authstorage.service';
+import { InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
+import { I_photoItem } from 'src/app/interface/photostorage';
+import { PicPhotoPage } from '../pic-photo/pic-photo.page';
+import { TakePictureComponent } from 'src/app/component/take-picture/take-picture.component';
 
 @Component({
   selector: 'app-doublephotos',
@@ -13,11 +17,14 @@ export class DoublephotosPage implements OnInit {
 
   selectedFile: File | undefined;
   token: any;
+  items: I_photoItem[] = [];
+  message = 'This modal example uses the modalController to present and dismiss modals.';
 
   constructor(
     private fileUploadService: FileUploadServiceService,
     private alertService : AlertServiceService,
-    private storageService : AuthstorageService
+    private storageService : AuthstorageService,
+    private modalCtrl: ModalController
     ) {}
 
   onFileChange(event: any) {
@@ -46,6 +53,40 @@ export class DoublephotosPage implements OnInit {
 
   ngOnInit() {
     this.token = this.storageService.getToken()
+    this.generateItems();
+  }
+
+  private generateItems() {
+    const count  = this.items.length + 1;
+    // let send : boolean = true;
+    for (let i : number = 0; i < 50; i++) {
+      let photo_temp : I_photoItem = {
+        name: `Item ${count + i}`,
+        date : new Date(),
+        send : (i%2) == 0 ? true : false
+      }
+      this.items.push(photo_temp);
+    }
+  }
+
+  onIonInfinite(ev : any) {
+    this.generateItems();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: TakePictureComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
+    }
   }
 
 }
