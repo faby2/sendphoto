@@ -7,14 +7,14 @@
     </ion-buttons>
     <ion-title>doublephotos</ion-title>
 
-    <ion-buttons slot="end">
-      <ion-button class="btn-enter" shape="round" expand="block"  (click)="openModal()">
+    <!-- <ion-buttons slot="end"> -->
+      <!-- <ion-button class="btn-enter" shape="round" expand="block"  (click)="openModal()"> -->
         <!-- <ion-icon name="add-outline"></ion-icon> -->
-        <ion-chip class="add">
-         + 
+        <ion-chip slot="end" (click)="openModal()"  class="add">
+         + Ajouter
         </ion-chip>
-      </ion-button>
-    </ion-buttons>
+      <!-- </ion-button> -->
+    <!-- </ion-buttons> -->
 
   </ion-toolbar>
 </ion-header>
@@ -23,7 +23,7 @@
   <input type="file" (change)="onFileChange($event)">
   <button (click)="uploadFile()">Envoyer</button>
 </ion-content> -->
-<!-- <ion-content> 
+<!-- <ion-content>
   <ion-list>
     <ion-item>
       <ion-label>Choix d'envoie</ion-label>
@@ -48,7 +48,7 @@
         <img src="../../../assets/images/profil.png" alt="avatar" />
       </ion-avatar>
       <ion-label>{{ item.name }}</ion-label>
-      
+
       <ion-chip *ngIf="item.send">
         <!-- <ion-icon name="add" color="primary"></ion-icon> -->
         <ion-label >Enoyé</ion-label>
@@ -61,15 +61,15 @@
         <!-- </ion-label> -->
         <!-- <ion-icon name="close-outline"></ion-icon> -->
       <!-- </ion-chip> -->
-      
+
 
       <!-- <ion-chip *ngIf="!item.send">
         <ion-label >Non Enoyé</ion-label>
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-chip> -->
-   
+
     </ion-item>
- 
+
   </ion-list>
 </ion-content>
 <ion-footer  class="ion-no-border">
@@ -93,6 +93,6 @@
           Logout
         </ion-tab-button>
       </ion-tab-bar>
-    </ion-tabs> 
+    </ion-tabs>
 </ion-toolbar>
 </ion-footer>

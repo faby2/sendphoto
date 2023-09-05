@@ -184,3 +184,8 @@ ion-content {
   width: 17px !important;
   height: 17px;
 }
+
+ion-header ion-toolbar:first-of-type {
+  padding-top: var(--ion-safe-area-top, 0);
+  border-bottom: 1px solid;
+}
