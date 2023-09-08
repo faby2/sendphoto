@@ -26,12 +26,34 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 @font-face {
-  font-family: Arciform;
-  src: url(/src/assets/fonts/Arciform.otf);
+  font-family: Popins;
+  src: url(/src/assets/fonts/Poppins/Poppins-Regular.ttf);
+  font-weight: 200;
 }
 
-:root {
-  --ion-font-family: Arciform;
+@font-face {
+  font-family: Arciform;
+  src: url(/src/assets/fonts/Arciform.otf);
+  font-weight: 400;
+}
+
+
+
+
+
+// body {
+//   --ion-font-family: Arciform;
+// }
+
+:root ,:root[mode="ios"],
+:root[mode="md"] {
+  --ion-font-family: Popins;
+  font-family:Popins !important;
+}
+
+ion-title, h1 {
+  --ion-font-family: Arciform !important;
+  font-family:Arciform !important;
 }
 
 
