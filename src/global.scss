@@ -25,6 +25,15 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@font-face {
+  font-family: Arciform;
+  src: url(/src/assets/fonts/Arciform.otf);
+}
+
+:root {
+  --ion-font-family: Arciform;
+}
+
 
 swiper-container {
   --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
@@ -167,7 +176,7 @@ ion-content {
   // background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
   // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,113,96,1) 35%, rgba(0,212,255,1) 100%);
   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
-  background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
+  // background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
   // --ion-background-color:  linear-gradient(266deg, rgba(63,96,99,1) 0%, rgba(255,255,255,1) 65%);
 
 
@@ -185,7 +194,62 @@ ion-content {
   height: 17px;
 }
 
-ion-header ion-toolbar:first-of-type {
-  padding-top: var(--ion-safe-area-top, 0);
-  border-bottom: 1px solid;
+// ion-header ion-toolbar:first-of-type {
+//   padding-top: var(--ion-safe-area-top, 0);
+//   border-bottom: 1px solid;
+// }
+
+ion-header {
+  ion-title {
+
+    text-transform: uppercase;
+  }
 }
+
+ion-tabs{
+  // --background : red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+	ion-fab {
+		margin-bottom: env(safe-area-inset-bottom); /* fix notch ios*/
+		ion-fab-button {
+			--box-shadow: none;
+		}
+	}
+	ion-tab-bar {
+		--border: 0;
+		--background: transparent;
+		position: absolute;
+		bottom: 0;
+		left:0; right: 0;
+		width: 100%;
+		&:after{
+			content: " ";
+			width: 100%;
+			bottom: 0;
+			background: #79ccca24;
+			height: env(safe-area-inset-bottom);
+			position: absolute;
+		}
+		ion-tab-button {
+			--background: #79ccca24;
+		}
+		ion-tab-button.comments {
+			margin-right: 0px;
+			border-top-right-radius: 18px;
+		}
+		ion-tab-button.notifs {
+			margin-left: 0px;
+			border-top-left-radius: 18px;
+		}
+		svg {
+			width: 72px;
+			margin-top: 19px;
+			path{
+				fill:  #79ccca24;
+			}
+		}
+	}
+}
+
+

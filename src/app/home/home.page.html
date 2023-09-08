@@ -10,27 +10,28 @@
         </ion-button>
       </ion-buttons>
 
-      <!-- <ion-buttons slot="start">
+      <ion-buttons slot="end">
         <ion-menu-button menu="main-menu"> </ion-menu-button>
-      </ion-buttons> -->
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content fullscreen="true">
+  <ion-content class="ion-padding">
+
     <ion-list-header >
       <ion-label>
         <ion-text color="primary" class="ion-text-start">
-          <h1>Monade photos </h1>
+          <h1> Monade photos</h1>
         </ion-text>
       </ion-label>
-      
+
     </ion-list-header>
     <ion-card (click)="navToDoublePhoto()">
       <ion-card-header >
-        <ion-card-title>Card Title</ion-card-title>
+        <ion-card-title>Doubles photos</ion-card-title>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
-    
+
       <ion-card-content>
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
@@ -40,46 +41,76 @@
           <!-- <ion-label >Enoyé</ion-label> -->35 envoyé
           <ion-icon name="checkmark-outline"></ion-icon>
         </ion-chip>
+        <ion-chip>
+          5 non envoyé
+        </ion-chip>
       </ion-card-footer>
     </ion-card>
 
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
+        <ion-card-title>Mes photos</ion-card-title>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
-    
+
       <ion-card-content>
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
+      <ion-card-footer>
+        <ion-chip>
+          <!-- <ion-icon name="add" color="primary"></ion-icon> -->
+          <!-- <ion-label >Enoyé</ion-label> -->12 envoyé
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-chip>
+        <ion-chip>
+          0 non envoyé
+        </ion-chip>
+      </ion-card-footer>
     </ion-card>
 
-    <div>
- 
-    </div>
   </ion-content>
 
   <ion-footer  class="ion-no-border">
     <ion-toolbar>
       <ion-tabs>
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button tab="home">
-            <ion-icon name="images-outline"></ion-icon>
-            Doubles photos
+
+        <ion-fab vertical="bottom" horizontal="center" translucent="true">
+          <!-- <ion-fab-button (click)="goToPictures()"> -->
+            <ion-fab-button>
+            <ion-icon name="camera"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+        <ion-tab-bar slot="bottom" class="ion-no-border">
+          <ion-tab-button tab="tab-encounters">
+            <!-- <ion-icon name="compass"></ion-icon> -->
+            <ion-icon name="images-sharp"></ion-icon>
+            <ion-badge >35</ion-badge>
           </ion-tab-button>
-          <ion-tab-button tab="radio">
-            <ion-icon name="image-outline"></ion-icon>
-            Mes photos
+
+          <ion-tab-button tab="tab-conversations" class="comments">
+            <ion-icon name="person"></ion-icon>
+            <!-- <ion-badge *ngIf="new_message">{{new_message}}</ion-badge> -->
+            <ion-badge >5</ion-badge>
           </ion-tab-button>
-          <ion-tab-button tab="library">
-            <ion-icon name="home-outline"></ion-icon>
-            Home
+
+          <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd"></path></svg>
+
+          <ion-tab-button tab="tab-notifications" class="notifs">
+            <ion-icon name="notifications"></ion-icon>
+            <!-- <ion-badge *ngIf="new_activities">{{new_activities}}</ion-badge> -->
+            <ion-badge >sdfsd</ion-badge>
           </ion-tab-button>
-          <ion-tab-button tab="search">
-            <ion-icon name="log-out-outline"></ion-icon>
-            Logout
+
+          <ion-tab-button tab="tab-profile">
+            <ion-icon name="home"></ion-icon>
           </ion-tab-button>
         </ion-tab-bar>
-      </ion-tabs> 
+      </ion-tabs>
   </ion-toolbar>
-</ion-footer>
+  </ion-footer>
+
+
+
+

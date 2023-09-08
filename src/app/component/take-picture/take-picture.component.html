@@ -1,12 +1,18 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <ion-chip class="add" (click)="cancel()" slot="start">
+      Annuler
+    </ion-chip>
     <ion-title>Welcome</ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <ion-chip slot="end" (click)="confirm()" class="add">
+      Save <ion-icon name="checkmark-outline"> </ion-icon>
+    </ion-chip>
   </ion-toolbar>
 </ion-header>
 <!-- <ion-content class="ion-padding">
@@ -19,7 +25,7 @@
   <input type="file" (change)="onFileChange($event)">
   <button (click)="uploadFile()">Envoyer</button>
 </ion-content> -->
-<ion-content class="ion-padding">
+<!-- <ion-content class="ion-padding">
   <ion-list>
     <ion-item>
       <ion-label>Choix d'envoie</ion-label>
@@ -29,5 +35,12 @@
         <ion-select-option value="bananas">Bananas</ion-select-option>
       </ion-select>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
+<ion-content>
+
+  <div class="container-img">
+    <div class="div-content-img">
+      <ion-img  src="../../../assets/icon/camera-button-icon-3.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+    </div>
+  </div>
 </ion-content>
