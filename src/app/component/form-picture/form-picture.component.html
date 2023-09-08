@@ -1,0 +1,14 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-chip class="add" (click)="cancel()" slot="start">
+      Annuler
+    </ion-chip>
+    <ion-title>Welcome</ion-title>
+    <ion-chip slot="end" (click)="confirm()" class="add">
+      Save <ion-icon name="checkmark-outline"> </ion-icon>
+    </ion-chip>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <img [src]="takeimage" *ngIf="takeimage">
+</ion-content>

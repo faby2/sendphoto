@@ -120,3 +120,8 @@ ion-content {
 // 		}
 // 	}
 // }
+.action-sheet-button-inner.sc-ion-action-sheet-md {
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
