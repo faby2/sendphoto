@@ -6,13 +6,18 @@ import { ModalController, NavParams } from '@ionic/angular';
   templateUrl: './form-picture.component.html',
   styleUrls: ['./form-picture.component.scss'],
 })
-export class FormPictureComponent {
+export class FormPictureComponent implements OnInit {
   takeimage : any = ''
   name: string = '';
   constructor(
     private modalCtrl: ModalController,
     private navParams: NavParams
     ) {}
+
+  ngOnInit(): void {
+    this.takeimage = this.navParams.get('imagePath')
+    console.log('Données reçues dans le modal :', this.takeimage);
+  }
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
   // }
