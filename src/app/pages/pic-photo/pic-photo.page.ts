@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pic-photo',
@@ -10,17 +10,23 @@ export class PicPhotoPage {
 
   name: string = '';
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private navCtrl : NavController
+    ) {}
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
   // }
 
-  cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
-  }
+  // cancel() {
+  //   return this.modalCtrl.dismiss(null, 'cancel');
+  // }
 
-  confirm() {
-    return this.modalCtrl.dismiss(this.name, 'confirm');
+  // confirm() {
+  //   return this.modalCtrl.dismiss(this.name, 'confirm');
+  // }
+  goToHome() {
+    this.navCtrl.navigateForward('/doublephotos')
   }
 
 }

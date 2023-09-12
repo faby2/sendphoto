@@ -92,7 +92,7 @@ export class DoublephotosPage implements OnInit {
   }
 
   navToPicPhoto() {
-    this.navCtrl.navigateForward('/home')
+    this.navCtrl.navigateForward('/pic-photo')
   }
 
 }
