@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
-  },  {
+  },
+  {
     path: 'photo',
     loadChildren: () => import('./photo/photo.module').then( m => m.PhotoPageModule)
   },

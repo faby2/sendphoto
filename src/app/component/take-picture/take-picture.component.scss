@@ -1,12 +1,127 @@
-.container-img {
-  width: 200px;
-  border: 1px solid #2d2d2d;
+
+
+
+
+swiper-slide {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-.div-content-img {
-  width: 100px;
-  height: 100px;
+// ion-toolbar {
+//   // --background: #33716a;
+//   --background: #2a7369;
+
+// }
+
+ion-header {
+  ion-toolbar{
+    // --background: #ffffff;
+    // border-radius: 0%;
+    // --background: #2a7369;
+    --background : #79ccca24;
+
+    ion-button {
+        text-transform:initial ;
+        font-size: 17px;
+        color: #ffffff;
+        // color: #12746b ;
+    }
+    // ion-icon {
+    //   color : #ffff;
+    // }
+
+    // ion-title {
+    //   color: #ffffff ;
+    //   text-transform:initial ;
+    //   font-size: 17px;
+    // }
+  }
+
+}
+
+ion-content {
+  // --background: #79ccca24;
+  .flex {
+    display: flex;
+    align-items: center;
+    height: 60%;
+    margin: atu;
+    margin-top: 22%;
+  }
+
+  swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  ion-label {
+    padding-top: 34px;
+    padding-bottom: 19px;
+  }
+
+  ion-card {
+    // border: 1px solid;
+    margin-bottom: 41px;
+  }
+}
+
+// ion-tab-bar {
+//   height: 77px;
+// }
+
+// ion-content {
+
+// }
+// $color :#79ccca24;
+// ion-tabs{
+//   // --background : red;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// 	ion-fab {
+// 		margin-bottom: env(safe-area-inset-bottom); /* fix notch ios*/
+// 		ion-fab-button {
+// 			--box-shadow: none;
+// 		}
+// 	}
+// 	ion-tab-bar {
+// 		--border: 0;
+// 		--background: transparent;
+// 		position: absolute;
+// 		bottom: 0;
+// 		left:0; right: 0;
+// 		width: 100%;
+// 		&:after{
+// 			content: " ";
+// 			width: 100%;
+// 			bottom: 0;
+// 			background: #79ccca24;
+// 			height: env(safe-area-inset-bottom);
+// 			position: absolute;
+// 		}
+// 		ion-tab-button {
+// 			--background: #79ccca24;
+// 		}
+// 		ion-tab-button.comments {
+// 			margin-right: 0px;
+// 			border-top-right-radius: 18px;
+// 		}
+// 		ion-tab-button.notifs {
+// 			margin-left: 0px;
+// 			border-top-left-radius: 18px;
+// 		}
+// 		svg {
+// 			width: 72px;
+// 			margin-top: 19px;
+// 			path{
+// 				fill:  #79ccca24;
+// 			}
+// 		}
+// 	}
+// }
+.action-sheet-button-inner.sc-ion-action-sheet-md {
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  flex-direction: column;
 }

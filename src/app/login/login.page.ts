@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
             errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect.';
           }
           console.log(errorMessage)
-          this.alertService.presentAlert(errorMessage, 'Erreur')
+          this.alertService.presentAlert(error, 'Erreur')
           throw error;
         })
       )
