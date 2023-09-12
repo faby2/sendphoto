@@ -3,7 +3,7 @@ import { FileUploadServiceService } from '../../service/file-upload-service.serv
 import { catchError } from 'rxjs';
 import { AlertServiceService } from 'src/app/service/alert-service.service';
 import { AuthstorageService } from 'src/app/service/authstorage.service';
-import { InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { I_photoItem } from 'src/app/interface/photostorage';
 import { PicPhotoPage } from '../pic-photo/pic-photo.page';
 import { TakePictureComponent } from 'src/app/component/take-picture/take-picture.component';
@@ -24,7 +24,8 @@ export class DoublephotosPage implements OnInit {
     private fileUploadService: FileUploadServiceService,
     private alertService : AlertServiceService,
     private storageService : AuthstorageService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private navCtrl : NavController
     ) {}
 
   onFileChange(event: any) {
@@ -78,7 +79,8 @@ export class DoublephotosPage implements OnInit {
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: TakePictureComponent,
+      // component: TakePictureComponent,
+      component: PicPhotoPage,
     });
     modal.present();
 
@@ -87,6 +89,10 @@ export class DoublephotosPage implements OnInit {
     if (role === 'confirm') {
       this.message = `Hello, ${data}!`;
     }
+  }
+
+  navToPicPhoto() {
+    this.navCtrl.navigateForward('/home')
   }
 
 }

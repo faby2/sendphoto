@@ -1,50 +1,63 @@
-<ion-header>
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button routerLink="/home" color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"> </ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Welcome</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-    </ion-buttons>
+    <ion-title>Mes doubles photos</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-menu-button menu="main-menu"> </ion-menu-button>
+    </ion-buttons> -->
+
+    <!-- <ion-buttons slot="end"> -->
+      <!-- <ion-button class="btn-enter" shape="round" expand="block"  (click)="openModal()"> -->
+        <!-- <ion-icon name="add-outline"></ion-icon> -->
+        <!-- <ion-chip slot="end" (click)="openModal()"  class="add"> -->
+         <!-- + -->
+         <!-- Ajouter -->
+        <!-- </ion-chip> -->
+      <!-- </ion-button> -->
+    <!-- </ion-buttons> -->
+
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-<!-- <div class="flex">
-  <ion-card>
+<div id="cards-container">
+  <ion-card >
     <ion-card-header >
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-      <ion-card-title>Doubles photos</ion-card-title>
+      <img alt="Silhouette of mountains" src="../../../assets/images/dinner.png" />
+      <!-- <ion-card-title>Doubles photos</ion-card-title> -->
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-      <ion-card-title>Mes photos</ion-card-title>
+      <img alt="Silhouette of mountains" src="../../../assets/images/dinner.png" />
+      <!-- <ion-card-title>Mes photos</ion-card-title> -->
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <ion-card >
     <ion-card-header >
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-      <ion-card-title>Doubles photos</ion-card-title>
+      <img alt="Silhouette of mountains" src="../../../assets/images/dinner.png" />
+      <!-- <ion-card-title>Doubles photos</ion-card-title> -->
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-      <ion-card-title>Mes photos</ion-card-title>
+      <img alt="Silhouette of mountains" src="../../../assets/images/dinner.png" />
+      <!-- <ion-card-title>Mes photos</ion-card-title> -->
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
-</div> -->
+</div>
 
-<ion-card>
+<!-- <ion-card>
   <ion-card-header>
     <ion-card-title>Card Title</ion-card-title>
     <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
@@ -80,6 +93,6 @@
       </ion-item>
     </ion-list>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
 
 </ion-content>
