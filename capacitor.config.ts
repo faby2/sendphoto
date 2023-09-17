@@ -8,12 +8,23 @@ const config: CapacitorConfig = {
   //   androidScheme: 'https'
   // }
   server: {
-    androidScheme: "https",
-    cleartext: true,
-    allowNavigation: [
-      // "http://test.test.id/api/*"
-      "https://www.monade-alimentaire.fr/api/"
-    ]
+    allowNavigation: []
+  },
+  android: {
+    allowMixedContent: true
+  },
+  // server: {
+  //   androidScheme: "https",
+  //   cleartext: true,
+  //   allowNavigation: [
+  //     // "http://test.test.id/api/*"
+  //     "https://www.monade-alimentaire.fr/api/"
+  //   ]
+  // },
+  plugins: {
+    CapacitorHttp: {
+      enabled: true
+    }
   }
 };
 
