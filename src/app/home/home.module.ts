@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { FormPictureComponent } from '../component/form-picture/form-picture.component';
+import { TakePictureComponent } from '../component/take-picture/take-picture.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { FormPictureComponent } from '../component/form-picture/form-picture.com
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, FormPictureComponent],
+  declarations: [HomePage, FormPictureComponent, TakePictureComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}

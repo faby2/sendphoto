@@ -15,3 +15,9 @@
     <ion-img [src]="takeimage" *ngIf="takeimage" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
   <!-- </ion-thumbnail> -->
 </ion-content>
+
+<ion-footer  class="ion-no-border">
+  <ion-toolbar>
+    <app-take-picture  [ispict]="true"  (getUrl)='getUrl($event)' (showAddPage)="showModalAdd($event)"></app-take-picture> 
+</ion-toolbar>
+</ion-footer>

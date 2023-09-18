@@ -121,6 +121,28 @@ export class HomePage {
     }
   }
 
+  getUrl(image:any) {
+    console.log(image)
+  }
+
+  async showModalAdd(show:boolean) {
+    const modal = await this.modalCtrl.create({
+      component: FormPictureComponent,
+      // componentProps: {
+      //   // Ici, vous pouvez passer vos données à FormPictureComponent
+      //   imagePath: 'imagePath',
+      //   type : 'type'
+      // }
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      // this.message = `Hello, ${data}!`;
+    }
+  }
+
 
 
 }
