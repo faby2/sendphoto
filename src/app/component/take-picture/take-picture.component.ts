@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionSheetController, IonicSlides, ModalController, NavController } from '@ionic/angular';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Router } from '@angular/router';
+import { I_picture } from 'src/app/utils/interfaces/I_picture';
 type Photo = "double" | "simple"
 
 @Component({
@@ -11,35 +12,62 @@ type Photo = "double" | "simple"
 })
 export class TakePictureComponent   {
 
-  @Output() getUrl = new EventEmitter<string>()
-  @Output() showAddPage = new EventEmitter<boolean>()
+  @Output() getUrl = new EventEmitter<I_picture>()
+  @Output() showAddPage = new EventEmitter<boolean>() 
   @Input() ispict : boolean
   imageUrl: string | undefined;
+  // checkchoise : any =  {
+  //   header: 'TYPES DE PHOTOS',
+  //   buttons: [
+  //     {
+  //       text: 'Double photos',
+  //       role: 'double',
+  //       data: {
+  //         action: 'delete',
+  //       },
+  //     },
+  //     {
+  //       text: 'Photos de moi',
+  //       role: 'simple',
+  //       data: {
+  //         action: 'share',
+  //       },
+  //     },
+  //     {
+  //       text: 'ANNULER',
+  //       role: 'cancel',
+  //       data: {
+  //         action: 'cancel',
+  //       },
+  //     },
+  //   ],
+  // }
+
   checkchoise : any =  {
-    header: 'TYPES DE PHOTOS',
+    header: 'TYPE DE PHOTO',
     buttons: [
       {
-        text: 'Double photos',
-        role: 'double',
+        text: 'Avant',
+        role: 'before',
         data: {
-          action: 'delete',
+          action: 'avant',
         },
       },
       {
-        text: 'Photos de moi',
-        role: 'simple',
+        text: 'Aprés',
+        role: 'after',
         data: {
           action: 'share',
         },
       },
       {
-        text: 'ANNULER',
+        text: 'Retour',
         role: 'cancel',
         data: {
           action: 'cancel',
         },
       },
-    ],
+    ]
   }
 
   constructor(
@@ -81,14 +109,35 @@ export class TakePictureComponent   {
 
   async takePicture() {
     // console.log('bonjour')
+    const actionSheet = await this.actionSheetCtrl.create(this.checkchoise);
+
+    await actionSheet.present();
+
+    const { data, role } = await actionSheet.onWillDismiss();
+
+    if (role === 'before' || role === 'after') {
+      await this.runCamera(role)
+    }
+
+
+    // this.presentActionSheet(image.webPath)
+  }
+
+  async runCamera(type : "before" | "after"){
+
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.Uri
     });
+
     this.imageUrl = image.webPath;
-    this.getUrl.emit(this.imageUrl)
-    // this.presentActionSheet(image.webPath)
+    this.getUrl.emit( 
+      {
+        imageUrl : this.imageUrl,
+        type : type
+      } 
+    )
   }
 
   // async presentActionSheet(imagePath?:any) {

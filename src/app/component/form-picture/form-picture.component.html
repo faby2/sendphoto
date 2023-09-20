@@ -3,7 +3,7 @@
     <ion-chip class="add" (click)="cancel()" slot="start">
      x Annuler
     </ion-chip>
-    <ion-title>Welcome</ion-title>
+    <ion-title>Ajout de photos</ion-title>
     <ion-chip slot="end" (click)="confirm()" class="add">
       Save <ion-icon name="checkmark-outline"> </ion-icon>
     </ion-chip>
@@ -12,9 +12,81 @@
 <ion-content class="ion-padding">
   <!-- <ion-thumbnail> -->
     <!-- <img [src]="takeimage" *ngIf="takeimage"> -->
-    <ion-img [src]="takeimage" *ngIf="takeimage" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+    
   <!-- </ion-thumbnail> -->
-</ion-content>
+  <!-- <ion-accordion-group [multiple]="true" [value]="['first', 'third']">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>PHOTO 1</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-img [src]="takeimage" *ngIf="takeimage" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>PHOTO 2 </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Second Content</div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Third Accordion</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Third Content</div>
+    </ion-accordion>
+  </ion-accordion-group>-->
+
+  <ion-list>
+    <ion-item>
+      <ion-select label="Repas" label-placement="fixed" placeholder="Selionner un repas">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+
+
+  </ion-list>
+  <ion-accordion-group [multiple]="true" #accordionGroup>
+    <ion-accordion  value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Photo avant</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-img [src]="takeimage1" *ngIf="takeimage1" alt=""></ion-img>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Photo apres</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-img [src]="takeimage2" *ngIf="takeimage2" alt="photo avant"></ion-img>
+      </div>
+  </ion-accordion>
+  <!-- <ion-accordion value="third">
+    <ion-item slot="header" color="light">
+      <ion-label>Third Accordion</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">
+      
+    </div>
+  </ion-accordion> -->
+</ion-accordion-group>
+</ion-content> 
+
+
 
 <ion-footer  class="ion-no-border">
   <ion-toolbar>

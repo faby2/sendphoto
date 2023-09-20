@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonAccordionGroup, ModalController, NavParams } from '@ionic/angular';
+import { I_picture } from 'src/app/utils/interfaces/I_picture';
 
 @Component({
   selector: 'app-form-picture',
@@ -7,16 +8,44 @@ import { ModalController, NavParams } from '@ionic/angular';
   styleUrls: ['./form-picture.component.scss'],
 })
 export class FormPictureComponent implements OnInit {
-  takeimage : any = ''
+  @ViewChild('accordionGroup', { static: true }) accordionGroup: IonAccordionGroup;
+  takeimage1 : any = ''
+  takeimage2 : any = ''
   name: string = '';
+  checkchoise : any =  {
+    header: 'TYPES DE PHOTOS',
+    buttons: [
+      {
+        text: 'Avant',
+        role: 'before',
+        data: {
+          action: 'avant',
+        },
+      },
+      {
+        text: 'Aprés',
+        role: 'after',
+        data: {
+          action: 'share',
+        },
+      },
+      {
+        text: 'Retour',
+        role: 'cancel',
+        data: {
+          action: 'cancel',
+        },
+      },
+    ],
+  }
   constructor(
     private modalCtrl: ModalController,
     private navParams: NavParams
     ) {}
 
   ngOnInit(): void {
-    this.takeimage = this.navParams.get('imagePath')
-    console.log('Données reçues dans le modal :', this.takeimage);
+    // this.takeimage = this.navParams.get('imagePath')
+    // console.log('Données reçues dans le modal :', this.takeimage);
   }
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
@@ -30,8 +59,17 @@ export class FormPictureComponent implements OnInit {
     return this.modalCtrl.dismiss(this.name, 'confirm');
   }
 
-  getUrl(image:any) {
+  getUrl(image: I_picture) {
     console.log(image)
+    const nativeEl = this.accordionGroup;
+
+    if(image.type == 'before') {
+      this.takeimage1 = image.imageUrl; 
+      nativeEl.value = 'first'
+    }else {
+      this.takeimage2 = image.imageUrl
+      nativeEl.value = 'second'
+    }
   }
 
   async showModalAdd(show:boolean) {
