@@ -185,6 +185,22 @@
 	--ion-color-tint: var(--ion-color-cian-tint);
 }
 
+ion-datetime {
+  --background: #fff;
+  --background-rgb: 255, 241, 242;
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 16px;
+  box-shadow: rgba(var(--ion-color-primary-contrast-rgb), 0.3) 0px 10px 15px -3px;
+}
+
+ion-datetime-button {
+  --ion-text-color : black;
+  :host button {
+    background: var(var(--ion-color-primary-shade));
+    --ion-background : var(var(--ion-color-primary-shade));
+  }
+}
+
 
 
 // @media (prefers-color-scheme: dark) {

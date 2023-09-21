@@ -20,3 +20,9 @@ ion-header {
   }
 
 }
+
+ion-datetime-button {
+  button#date-button{
+    --ion-color: white !important;
+  }
+}
