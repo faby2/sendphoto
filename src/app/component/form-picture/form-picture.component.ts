@@ -69,8 +69,8 @@ export class FormPictureComponent implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    this.loadingService.presentLoading()
+  async confirm() {
+    await this.loadingService.presentLoading()
     // return this.modalCtrl.dismiss(this.name, 'confirm');
   }
 
