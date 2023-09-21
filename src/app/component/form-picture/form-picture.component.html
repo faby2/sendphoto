@@ -39,25 +39,38 @@
 
   <ion-list>
     <ion-item>
-      <ion-select label="Repas" label-placement="fixed" placeholder="Selionner un repas">
+      <ion-select label="Repas" label-placement="fixed" placeholder="Selionner un repas" [(ngModel)]="doublephotosdata.repas">
         <ion-select-option value="apple">Apple</ion-select-option>
         <ion-select-option value="banana">Banana</ion-select-option>
         <ion-select-option value="orange">Orange</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-datetime presentation="date" [preferWheel]="true"></ion-datetime>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
-      <ion-datetime-button displayFormat="MM/DD/YYYY" ></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime presentation="date" [preferWheel]="true" id="datetime" displayFormat="MM/DD/YYYY" [showDefaultButtons]="true" doneText="All set" cancelText="Never mind"></ion-datetime>
-        </ng-template>
-      </ion-modal>
+      <div slot="start">
+        date
+      </div>
+      <div slot="end">
+        <ion-datetime-button color="primary" presentation="date" datetime="datetime1"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <!-- <ion-datetime id="datetime" displayFormat="MM/DD/YYYY" [showDefaultButtons]="true" doneText="All set" cancelText="Never mind"></ion-datetime> -->
+            <!-- <ion-datetime id="datetime1"   presentation="date"></ion-datetime> -->
+            <ion-datetime id="datetime1" presentation="date"  [preferWheel]="true" [(ngModel)]="doublephotosdata.date"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </div>
     </ion-item>
 
-
+    <ion-item>
+      <ion-select label="Choix de l'envoie" label-placement="fixed" placeholder="" [(ngModel)]="doublephotosdata.envoie">
+        <ion-select-option value="apple">Tous de suite</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
 
   </ion-list>
   <ion-accordion-group [multiple]="true" #accordionGroup>

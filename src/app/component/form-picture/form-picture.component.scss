@@ -21,8 +21,13 @@ ion-header {
 
 }
 
-ion-datetime-button {
-  button#date-button{
-    --ion-color: white !important;
+// #time-button {
+//   display: none;
+// }
+
+ion-select {
+  .label-text-wrapper {
+    width: 100%;
   }
 }
+

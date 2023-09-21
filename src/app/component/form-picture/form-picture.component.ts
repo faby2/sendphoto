@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonAccordionGroup, ModalController, NavParams } from '@ionic/angular';
+import { LoadingService } from 'src/app/service/loading.service';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
 
 @Component({
@@ -38,14 +39,27 @@ export class FormPictureComponent implements OnInit {
       },
     ],
   }
+
+  doublephotosdata :any = {
+    date: '' ,
+    repas: '',
+    envoie: ''
+  }
   constructor(
     private modalCtrl: ModalController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private loadingService: LoadingService
     ) {}
 
   ngOnInit(): void {
     // this.takeimage = this.navParams.get('imagePath')
     // console.log('Données reçues dans le modal :', this.takeimage);
+    this.setDefaultDate()
+  }
+
+  setDefaultDate() {
+    const date = new Date();
+    this.doublephotosdata.date = date.toISOString();
   }
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
@@ -56,7 +70,8 @@ export class FormPictureComponent implements OnInit {
   }
 
   confirm() {
-    return this.modalCtrl.dismiss(this.name, 'confirm');
+    this.loadingService.presentLoading()
+    // return this.modalCtrl.dismiss(this.name, 'confirm');
   }
 
   getUrl(image: I_picture) {
@@ -64,7 +79,7 @@ export class FormPictureComponent implements OnInit {
     const nativeEl = this.accordionGroup;
 
     if(image.type == 'before') {
-      this.takeimage1 = image.imageUrl; 
+      this.takeimage1 = image.imageUrl;
       nativeEl.value = 'first'
     }else {
       this.takeimage2 = image.imageUrl
