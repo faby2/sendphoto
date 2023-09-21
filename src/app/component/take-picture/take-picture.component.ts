@@ -128,14 +128,18 @@ export class TakePictureComponent   {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      // resultType: CameraResultType.Uri 
+      resultType: CameraResultType.Base64
+      
     });
-
-    this.imageUrl = image.webPath;
+    console.log(image)
+    // this.imageUrl = image.webPath;
+    this.imageUrl = image.base64String;
     this.getUrl.emit( 
       {
         imageUrl : this.imageUrl,
-        type : type
+        type : type,
+        image : image
       } 
     )
   }
