@@ -5,6 +5,7 @@ import { FileUploadServiceService } from 'src/app/service/file-upload-service.se
 import { LoadingService } from 'src/app/service/loading.service';
 import { MyHttpServiceService } from 'src/app/service/my-http-service.service';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
+import { } from '@capacitor/core';
 
 @Component({
   selector: 'app-form-picture',
@@ -81,7 +82,12 @@ export class FormPictureComponent implements OnInit {
     let loading = await this.loadingService.presentLoading()
     
     const token : any = await this.storageService.getToken();
-    this.fileupload.sendPhotoDouble(this.image1.base64String ,this.image2,token).then(async (response)=>{
+    const file: any = await this.convertBlogToFile(this.image1)
+    // this.fileupload.sendPhotoDouble(this.image1 ,this.image2,token).then(async (response)=>{
+    console.log('eto')
+    // debugger
+    this.fileupload.sendPhotoDouble(file ,this.image2,token).then(async (response)=>{
+      
      await loading.dismiss()
       console.log('response',JSON.stringify(response))
     }).catch(async(error)=>{
@@ -91,8 +97,26 @@ export class FormPictureComponent implements OnInit {
     // return this.modalCtrl.dismiss(this.name, 'confirm');
   }
 
-  getUrl(image: I_picture) {
-    console.log(image)
+  blobToFile(blob : any, fileName: any, mimeType:any) {
+    const options = { type: mimeType };
+    const file = new File([blob], fileName, options);
+    return file;
+  }
+
+  async convertBlogToFile(image : I_picture) {
+    const blobUrl = image.imageUrl;
+    const fileName = 'example.png'; // Set the desired filename
+    const mimeType = 'text/plain'; // Set the desired MIME type
+    const response = await fetch(blobUrl);
+    const blobData = await response.blob();
+    const file = this.blobToFile(blobData, fileName, mimeType);
+    console.log('File created:', file);
+    return file
+  }
+
+  async getUrl(image: I_picture) {
+    console.log('image',image.imageUrl)
+
     const nativeEl = this.accordionGroup;
 
     if(image.type == 'before') {

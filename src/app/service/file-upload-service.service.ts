@@ -10,7 +10,9 @@ export class FileUploadServiceService {
   url : string = 'https://www.monade-alimentaire.fr/api/photos'
   constructor(private http: HttpClient) {}
 
-  uploadFile(file: File, token:string): Observable<any> {
+  uploadFile(file: File, token?:string): Observable<any> {
+
+    console.log('file',file)
     const formData = new FormData();
     formData.append('photo', file, file.name);
     formData.append('date', '15/12/2023');
@@ -21,7 +23,7 @@ export class FileUploadServiceService {
     // });
 
     const headers = {
-      Authorization: "Bearer 18|Q7m3vUMhWFmfDua6W6DhbeeBtQO2tWPD4pCD5x4H",
+      Authorization: "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
     };
 
 
@@ -35,13 +37,19 @@ export class FileUploadServiceService {
     return this.http.post(this.url, formData, options);
   }
 
-  sendPhotoDouble(file: any,file2 : File, token : string) {
-    const formData = new FormData();
-    formData.append('photo', file);
-    formData.append('date', '15/12/2023');
+  sendPhotoDouble(file_image: any,file2 : File, token : string) {
+    console.log('file', file_image)
+    // let file : any = file_image.image.dataUrl
+    let file : any = file_image
+    // console.log('file', this.convertFileToBase64(file))
+    // debugger
+    // const formData = new FormData();
+    // formData.append('photo', file);
+    // formData.append('date', '15/12/2023');
     const headers = {
-      "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
-      'Content-Type': 'multipart/form-data'
+      "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'plain/text',
     };
     const options: HttpOptions = {
       url: "" + this.url + "" /*+"?email="+email+"&password="+password*/,
@@ -49,9 +57,13 @@ export class FileUploadServiceService {
       params: { 'date': '1/12/2023'  },
       // responseType:'json'  ,
       dataType : 'file',
-      data : {
+      data : 
+      // JSON.stringify( 
+        {
         photo : file
-      },
+      }
+      // )
+      ,
       headers : headers
       // headers: {
       //   'Authorization': "Bearer " +  token  ,
@@ -59,7 +71,52 @@ export class FileUploadServiceService {
       //   'Access-Control-Allow-Origin': '*',
       //   // 'Cache-Control': 'no-cache',
       //   // 'Pragma': 'no-cache',
-      //   // // "Content-Type": "application/x-www-form-urlencoded",
+        // // "Content-Type": "application/x-www-form-urlencoded",
+      //   // "Accept": "application/json",
+      // },
+      
+    };
+
+    // console.log('options', options)
+    // debugger
+   return  CapacitorHttp.post(options );
+  }
+
+  sendPhotoDouble2(file_image: any,file2 : File, token : string) {
+    // console.log('file', file.image.dataUrl)
+    // let file : any = file_image.image.dataUrl
+    let file : any = file_image
+    console.log('file', this.convertFileToBase64(file))
+    debugger
+    const formData = new FormData();
+    formData.append('photo', file);
+    formData.append('date', '15/12/2023');
+    const headers = {
+      "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'plain/text',
+    };
+    const options: HttpOptions = {
+      url: "" + this.url + "" /*+"?email="+email+"&password="+password*/,
+      // headers: { 'X-Fake-Header': 'Fake-Value' },
+      params: { 'date': '1/12/2023'  },
+      // responseType:'json'  ,
+      dataType : 'file',
+      data : 
+      // JSON.stringify( 
+        {
+        photo : file
+      }
+      // )
+      ,
+      headers : headers
+      // headers: {
+      //   'Authorization': "Bearer " +  token  ,
+      //   // 'Content-Type': 'application/json',
+      //   'Access-Control-Allow-Origin': '*',
+      //   // 'Cache-Control': 'no-cache',
+      //   // 'Pragma': 'no-cache',
+        // // "Content-Type": "application/x-www-form-urlencoded",
       //   // "Accept": "application/json",
       // },
       
@@ -68,5 +125,52 @@ export class FileUploadServiceService {
    return  CapacitorHttp.post(options );
   }
 
+
+  convertFileToBase64(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      console.log(base64String); // Affiche la représentation en base64 du fichier
+      // Vous pouvez maintenant utiliser base64String comme nécessaire
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Supposons que vous appelez cette fonction lorsque vous avez un objet File
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    this.convertFileToBase64(file);
+  }
+
+
+
+
+
+
+
+  // public uploadFile(imageURI:any) {
+  //   return new Promise((resolve, rejet) =>{
+  //       const fileTransfer: FileTransferObject = this.transfer.create();
+  //       let options: FileUploadOptions = {
+  //         fileKey: 'image',
+  //         httpMethod: 'POST',
+  //         chunkedMode: true,
+  //         mimeType: "image/jpeg",
+  //         headers: {
+  //           'Accept': 'application/json'
+  //         }
+  //       }
+  //       let resource = 'images/temp';
+  //       let url = Config.endpoints.cyclos + resource;
+  //       fileTransfer.upload(imageURI, encodeURI(url), options)
+  //         .then((imageId) => {
+  //           resolve(imageId.response);
+  //       }, (error) => {
+  //         rejet(error);
+  //     });
+  //   }); 
+  // }
+
+  
   
 }
