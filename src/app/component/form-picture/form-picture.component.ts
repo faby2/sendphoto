@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonAccordionGroup, ModalController, NavParams } from '@ionic/angular';
+import { AuthstorageService } from 'src/app/service/authstorage.service';
+import { FileUploadServiceService } from 'src/app/service/file-upload-service.service';
 import { LoadingService } from 'src/app/service/loading.service';
+import { MyHttpServiceService } from 'src/app/service/my-http-service.service';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
 
 @Component({
@@ -10,8 +13,10 @@ import { I_picture } from 'src/app/utils/interfaces/I_picture';
 })
 export class FormPictureComponent implements OnInit {
   @ViewChild('accordionGroup', { static: true }) accordionGroup: IonAccordionGroup;
-  takeimage1 : any = ''
-  takeimage2 : any = ''
+  takeimage1 : File | any = ''
+  takeimage2 : File | any = ''
+  image1 : any 
+  image2 : any
   name: string = '';
   checkchoise : any =  {
     header: 'TYPES DE PHOTOS',
@@ -48,7 +53,10 @@ export class FormPictureComponent implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private navParams: NavParams,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private httpService : MyHttpServiceService,
+    private fileupload : FileUploadServiceService,
+    private storageService : AuthstorageService
     ) {}
 
   ngOnInit(): void {
@@ -70,7 +78,16 @@ export class FormPictureComponent implements OnInit {
   }
 
   async confirm() {
-    await this.loadingService.presentLoading()
+    let loading = await this.loadingService.presentLoading()
+    
+    const token : any = await this.storageService.getToken();
+    this.fileupload.sendPhotoDouble(this.image1.base64String ,this.image2,token).then(async (response)=>{
+     await loading.dismiss()
+      console.log('response',JSON.stringify(response))
+    }).catch(async(error)=>{
+      await loading.dismiss()
+      console.log('error',JSON.stringify(error))
+    })
     // return this.modalCtrl.dismiss(this.name, 'confirm');
   }
 
@@ -80,9 +97,11 @@ export class FormPictureComponent implements OnInit {
 
     if(image.type == 'before') {
       this.takeimage1 = image.imageUrl;
+      this.image1 = image
       nativeEl.value = 'first'
     }else {
       this.takeimage2 = image.imageUrl
+      this.image2 = image
       nativeEl.value = 'second'
     }
   }

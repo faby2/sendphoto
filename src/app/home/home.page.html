@@ -42,7 +42,7 @@
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-chip>
       <ion-chip>
-        5 non envoyé
+        5 en attente
       </ion-chip>
     </ion-card-footer>
   </ion-card>
@@ -63,7 +63,7 @@
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-chip>
       <ion-chip>
-        0 non envoyé
+        0 en attente
       </ion-chip>
     </ion-card-footer>
   </ion-card>
@@ -71,7 +71,7 @@
 </ion-content>
 
 <ion-footer  class="ion-no-border">
-  <ion-toolbar>
+  <!-- <ion-toolbar> -->
     <app-take-picture [ispict]="false" (getUrl)='getUrl($event)' (showAddPage)="showModalAdd($event)"></app-take-picture> 
-</ion-toolbar>
+<!-- </ion-toolbar> -->
 </ion-footer>

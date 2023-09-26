@@ -10,13 +10,14 @@ export class LoadingService {
 
   }
 
-  async presentLoading(message ? : string,duration ?: number) {
+  async presentLoading(message ? : string,duration ?: number) : Promise <HTMLIonLoadingElement> {
     const loading = await this.loadingCtrl.create({
       message: message ? message : 'Veuillez patienter' ,
       duration: duration ? duration : -1,
     });
 
     loading.present();
+    return loading;
   }
 
 }
