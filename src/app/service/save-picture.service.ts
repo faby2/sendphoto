@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CapacitorHttp, HttpOptions } from '@capacitor/core';
+import { Capacitor, CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { Observable } from 'rxjs';
 import { Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Camera, CameraResultType,CameraSource } from '@capacitor/camera';
+import { FileUploadServiceService } from './file-upload-service.service';
+import { AuthstorageService } from './authstorage.service';
 
 export interface UserPhoto {
   filepath: any
@@ -16,7 +18,8 @@ export interface UserPhoto {
 })
 export class SavePictureService {
   photos : Array <UserPhoto> = new Array<UserPhoto>()
-  constructor() { }
+  constructor( private fileUploadService : FileUploadServiceService , 
+    private storageService : AuthstorageService ,) { }
 
 
   convertBlobToBase64(blob: Blob) {
@@ -28,6 +31,37 @@ export class SavePictureService {
         };
         reader.readAsDataURL(blob);
     })
+  }
+
+  async takePhoto3() {
+    const options = {
+      resultType: CameraResultType.Uri
+    };
+
+    const originalPhoto = await Camera.getPhoto(options);
+    // const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
+    const photoInTempStorage = await Filesystem.readFile({path : originalPhoto.path as any });
+    // const token : any = await this.storageService.getToken();
+    // await this.fileUploadService.sendPhotoDouble2(originalPhoto.path,'' as any,token)
+    // let file = new File(originalPhoto.path)
+    let date = new Date(),
+      time = date.getTime(),
+      fileName = time + ".jpeg";
+
+    await Filesystem.writeFile({
+      data: photoInTempStorage.data,
+      path: fileName,
+      directory: Directory.Data
+    });
+
+    const finalPhotoUri = await Filesystem.getUri({
+      directory: Directory.Data,
+      path: fileName
+    });
+
+    let photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
+    console.log(finalPhotoUri);
+    console.log(photoPath);
   }
 
 
@@ -45,7 +79,7 @@ export class SavePictureService {
     console.log(this.photos)
    const myfile = await Filesystem.readFile({path : savedFileImage.filepath , directory : Directory.Data })
    console.log('myfile',myfile)
-  };
+  }
 
   async savePicture(photo: Photo, fileName: string): Promise<UserPhoto> {
     // Fetch the photo, read as a blob, then convert to base64 format
@@ -53,7 +87,8 @@ export class SavePictureService {
     //  url : photo.webPath!,
     //  responseType : "blob"
     // })
-    const response = await fetch(photo.webPath!);
+    let webPath : any = photo.webPath
+    const response = await fetch(webPath.replace('localhost','10.0.2.2')!);
     // const response : any = await CapacitorHttp.get({ url : photo.webPath!,responseType : "blob"})
     console.log(response)
     const blob = await response.blob();
