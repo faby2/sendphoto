@@ -5,6 +5,8 @@ import { FileUploadServiceService } from 'src/app/service/file-upload-service.se
 import { LoadingService } from 'src/app/service/loading.service';
 import { MyHttpServiceService } from 'src/app/service/my-http-service.service';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
+import { Filesystem } from '@capacitor/filesystem';
+import { SavePictureService } from 'src/app/service/save-picture.service';
 
 @Component({
   selector: 'app-form-picture',
@@ -15,7 +17,7 @@ export class FormPictureComponent implements OnInit {
   @ViewChild('accordionGroup', { static: true }) accordionGroup: IonAccordionGroup;
   takeimage1 : File | any = ''
   takeimage2 : File | any = ''
-  image1 : any 
+  image1 : any
   image2 : any
   name: string = '';
   checkchoise : any =  {
@@ -56,7 +58,8 @@ export class FormPictureComponent implements OnInit {
     private loadingService: LoadingService,
     private httpService : MyHttpServiceService,
     private fileupload : FileUploadServiceService,
-    private storageService : AuthstorageService
+    private storageService : AuthstorageService ,
+    private  savePictureService: SavePictureService
     ) {}
 
   ngOnInit(): void {
@@ -78,21 +81,67 @@ export class FormPictureComponent implements OnInit {
   }
 
   async confirm() {
-    let loading = await this.loadingService.presentLoading()
-    
-    const token : any = await this.storageService.getToken();
-    this.fileupload.sendPhotoDouble(this.image1.base64String ,this.image2,token).then(async (response)=>{
-     await loading.dismiss()
-      console.log('response',JSON.stringify(response))
-    }).catch(async(error)=>{
-      await loading.dismiss()
-      console.log('error',JSON.stringify(error))
-    })
-    // return this.modalCtrl.dismiss(this.name, 'confirm');
+    await this.savePictureService.takePhoto()
   }
 
-  getUrl(image: I_picture) {
-    console.log(image)
+  // async confirm() {
+  //   let loading = await this.loadingService.presentLoading()
+
+  //   const token : any = await this.storageService.getToken();
+  //   const file: any = await this.convertBlogToFile(this.image1)
+  //   // this.fileupload.sendPhotoDouble(this.image1 ,this.image2,token).then(async (response)=>{
+  //   console.log('eto')
+  //   // debugger
+  //   this.fileupload.sendPhotoDouble(file ,this.image2,token).then(async (response)=>{
+
+  //    await loading.dismiss()
+  //     console.log('response',JSON.stringify(response))
+  //   }).catch(async(error)=>{
+  //     await loading.dismiss()
+  //     console.log('error',JSON.stringify(error))
+  //   })
+  //   // return this.modalCtrl.dismiss(this.name, 'confirm');
+  // }
+
+  blobToFile(blob : any, fileName: any, mimeType:any) {
+    const options = { type: mimeType };
+    const file = new File([blob], fileName, options);
+    return file;
+  }
+
+  async  blobUriToFile(blobUri : any) {
+    try {
+      const path = decodeURIComponent(blobUri).replace("http://localhost", ""); // Supprimer la partie "http://localhost"
+      const fileContent = await Filesystem.readFile({
+        path: path
+      });
+
+      // fileContent est maintenant le contenu du fichier sous forme de ArrayBuffer ou chaîne (selon le type de fichier)
+
+      return fileContent;
+    } catch (error) {
+      console.error("Erreur :", error);
+      throw error;
+    }
+  }
+
+  async convertBlogToFile(image : I_picture) {
+    const blobUrl = image.imageUrl;
+    return this.blobUriToFile(blobUrl)
+    // const fileName = 'example.png'; // Set the desired filename
+    // const mimeType = 'text/plain'; // Set the desired MIME type
+    // console.log('bobURL',blobUrl)
+    // console.log('bobURL',encodeURI (blobUrl))
+    // const response = await fetch(encodeURI (blobUrl));
+    // const blobData = await response.blob();
+    // const file = this.blobToFile(blobData, fileName, mimeType);
+    // console.log('File created:', file);
+    // return file
+  }
+
+  async getUrl(image: I_picture) {
+    console.log('image',encodeURI(image.imageUrl))
+
     const nativeEl = this.accordionGroup;
 
     if(image.type == 'before') {

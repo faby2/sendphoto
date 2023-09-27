@@ -3,6 +3,7 @@ import { ActionSheetController, IonicSlides, ModalController, NavController } fr
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Router } from '@angular/router';
 import { FormPictureComponent } from '../component/form-picture/form-picture.component';
+import { FileUploadServiceService } from '../service/file-upload-service.service';
 
 // const { Camera } = Plugins;
 type Photo = "double" | "simple"
@@ -40,10 +41,14 @@ export class HomePage {
     ],
   }
 
+  selectedFile: File | undefined;
+
   constructor(
-    private navCtrl : NavController ,private actionSheetCtrl: ActionSheetController,
+    private navCtrl : NavController ,
+    private actionSheetCtrl: ActionSheetController,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private fileUploadService: FileUploadServiceService
     ) {}
 
   navToLogin() {
@@ -142,6 +147,42 @@ export class HomePage {
       // this.message = `Hello, ${data}!`;
     }
   }
+
+
+
+
+
+
+
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadFile() {
+    if (this.selectedFile) {
+      // this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+      //   (response) => {
+      //     console.log('Fichier envoyé avec succès :', response);
+      //   },
+      //   (error) => {
+      //     console.error('Erreur lors de l\'envoi du fichier :', error);
+      //   }
+      // );
+
+      // let loading = await this.loadingService.presentLoading()
+    
+      // const token : any = await this.storageService.getToken();
+      this.fileUploadService.sendPhotoDouble(this.selectedFile ,'' as any,'token').then(async (response)=>{
+      //  await loading.dismiss()
+        console.log('response',JSON.stringify(response))
+      }).catch(async(error)=>{
+        // await loading.dismiss()
+        console.log('error',JSON.stringify(error))
+      })
+    }
+  }
+
+  
 
 
 

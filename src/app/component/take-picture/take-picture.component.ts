@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionSheetController, IonicSlides, ModalController, NavController } from '@ionic/angular';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Camera, CameraResultType,CameraSource } from '@capacitor/camera';
 import { Router } from '@angular/router';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
 type Photo = "double" | "simple"
@@ -128,14 +128,15 @@ export class TakePictureComponent   {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri,
-      source : CameraSource.Photos
+      resultType: CameraResultType.Uri ,
+      // resultType: CameraResultType.DataUrl ,
+      source: CameraSource.Camera,
       // resultType: CameraResultType.Base64
 
     });
     console.log(image)
-    // this.imageUrl = image.webPath;
-    this.imageUrl = image.base64String;
+    this.imageUrl = image.webPath;
+    // this.imageUrl = image.base64String;
     this.getUrl.emit(
       {
         imageUrl : this.imageUrl,

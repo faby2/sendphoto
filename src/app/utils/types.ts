@@ -1,2 +1,2 @@
-type Photo = "double" | "simple"
+// type Photo = "double" | "simple"
 type TakingType = "before" | "after"
