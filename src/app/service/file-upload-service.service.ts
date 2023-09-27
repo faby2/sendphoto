@@ -56,7 +56,8 @@ export class FileUploadServiceService {
       // headers: { 'X-Fake-Header': 'Fake-Value' },
       params: { 'date': '1/12/2023'  },
       // responseType:'json'  ,
-      dataType : 'file',
+      dataType : 'formData',
+      method: 'POST',
       data : 
       // JSON.stringify( 
         {
@@ -79,15 +80,16 @@ export class FileUploadServiceService {
 
     // console.log('options', options)
     // debugger
-   return  CapacitorHttp.post(options );
+   return  CapacitorHttp.request(options);
+  //  return  CapacitorHttp.post(options );
   }
 
   sendPhotoDouble2(file_image: any,file2 : File, token : string) {
     // console.log('file', file.image.dataUrl)
     // let file : any = file_image.image.dataUrl
     let file : any = file_image
-    console.log('file', this.convertFileToBase64(file))
-    debugger
+    // console.log('file', this.convertFileToBase64(file))
+    // debugger
     const formData = new FormData();
     formData.append('photo', file);
     formData.append('date', '15/12/2023');

@@ -5,7 +5,7 @@ import { FileUploadServiceService } from 'src/app/service/file-upload-service.se
 import { LoadingService } from 'src/app/service/loading.service';
 import { MyHttpServiceService } from 'src/app/service/my-http-service.service';
 import { I_picture } from 'src/app/utils/interfaces/I_picture';
-import { } from '@capacitor/core';
+import { Filesystem } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-form-picture',
@@ -103,19 +103,38 @@ export class FormPictureComponent implements OnInit {
     return file;
   }
 
+  async  blobUriToFile(blobUri : any) {
+    try {
+      const path = decodeURIComponent(blobUri).replace("http://localhost", ""); // Supprimer la partie "http://localhost"
+      const fileContent = await Filesystem.readFile({
+        path: path
+      });
+  
+      // fileContent est maintenant le contenu du fichier sous forme de ArrayBuffer ou chaîne (selon le type de fichier)
+  
+      return fileContent;
+    } catch (error) {
+      console.error("Erreur :", error);
+      throw error;
+    }
+  }
+
   async convertBlogToFile(image : I_picture) {
     const blobUrl = image.imageUrl;
-    const fileName = 'example.png'; // Set the desired filename
-    const mimeType = 'text/plain'; // Set the desired MIME type
-    const response = await fetch(blobUrl);
-    const blobData = await response.blob();
-    const file = this.blobToFile(blobData, fileName, mimeType);
-    console.log('File created:', file);
-    return file
+    return this.blobUriToFile(blobUrl)
+    // const fileName = 'example.png'; // Set the desired filename
+    // const mimeType = 'text/plain'; // Set the desired MIME type
+    // console.log('bobURL',blobUrl)
+    // console.log('bobURL',encodeURI (blobUrl))
+    // const response = await fetch(encodeURI (blobUrl));
+    // const blobData = await response.blob();
+    // const file = this.blobToFile(blobData, fileName, mimeType);
+    // console.log('File created:', file);
+    // return file
   }
 
   async getUrl(image: I_picture) {
-    console.log('image',image.imageUrl)
+    console.log('image',encodeURI(image.imageUrl))
 
     const nativeEl = this.accordionGroup;
 
