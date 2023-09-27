@@ -12,9 +12,9 @@ mdp : 1233211234
 
 Bonjour Fabrice,
 Oui bien sur :
-- pour le test (mail et password) : test@test.test
-- que voulez-vous dire par espace?
-- pour la partie API de suppression de photos : https://www.monade-alimentaire.fr/api/photo/[id_des_photos]/delete
+  - pour le test (mail et password) : test@test.test
+  - que voulez-vous dire par espace?
+  - pour la partie API de suppression de photos : https://www.monade-alimentaire.fr/api/photo/[id_des_photos]/delete
 
 
 Important aussi, si c'est une double photos, voici les arguments requis : photo1, photo2, repas(breakfast, lunch,diner,other) et la date
@@ -30,6 +30,8 @@ champs requis : email,password
 pour les photos
 lien : https://www.monade-alimentaire.fr/api/photos
 token requis
+
+
 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
 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
 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
@@ -43,6 +45,7 @@ mdp : 1233211234
 
 
 Bonjour Fabrice,
+
 Oui bien sur :
 - pour le test (mail et password) : test@test.test
 - que voulez-vous dire par espace?
@@ -55,6 +58,8 @@ Pour une simple photo c'est : date,photo
 
 
 Bonjour Monsieur Fabrice,
+
+
 Désolé d'avoir fait attendre, voici les infos que cherchez
 lien : https://www.monade-alimentaire.fr/api/connexion
 champs requis : email,password

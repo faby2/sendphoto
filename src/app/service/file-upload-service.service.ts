@@ -40,7 +40,8 @@ export class FileUploadServiceService {
     formData.append('photo', file);
     formData.append('date', '15/12/2023');
     const headers = {
-      "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
+      // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
+      "Authorization": "Bearer " + token,
       'Content-Type': 'multipart/form-data'
     };
     const options: HttpOptions = {
@@ -62,11 +63,11 @@ export class FileUploadServiceService {
       //   // // "Content-Type": "application/x-www-form-urlencoded",
       //   // "Accept": "application/json",
       // },
-      
+
     };
-  
+
    return  CapacitorHttp.post(options );
   }
 
-  
+
 }
