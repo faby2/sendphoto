@@ -9,6 +9,8 @@ import {decode} from "base64-arraybuffer";
 import { FileUploadServiceService } from './file-upload-service.service';
 import { AuthstorageService } from './authstorage.service';
 
+
+
 export interface UserPhoto {
   filepath: any
   webviewPath: any
@@ -19,6 +21,7 @@ export interface UserPhoto {
 })
 export class SavePictureService {
   photos : Array <UserPhoto> = new Array<UserPhoto>()
+
   constructor( private fileUploadService : FileUploadServiceService ,
     private storageService : AuthstorageService ,) { }
 
@@ -33,6 +36,17 @@ export class SavePictureService {
         reader.readAsDataURL(blob);
     })
   }
+
+
+  async takePhoto() {
+    const options = {
+      resultType: CameraResultType.Uri
+    };
+
+    const originalPhoto = await Camera.getPhoto(options);
+    await this.fileUploadService.takeExemple(originalPhoto.path)
+  }
+
 
   async takePhoto3() {
     const options = {
@@ -66,7 +80,7 @@ export class SavePictureService {
   }
 
 
-  async takePhoto() {
+  async takePhoto4() {
     const photo = await Camera.getPhoto({
       resultType: CameraResultType.Base64,
       source: CameraSource.Camera,

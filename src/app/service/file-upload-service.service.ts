@@ -2,12 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { Observable } from 'rxjs';
+import { ApproovHttp   } from '@awesome-cordova-plugins/approov-advanced-http/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadServiceService {
   url : string = 'https://www.monade-alimentaire.fr/api/photos'
+  http_ : ApproovHttp  = new ApproovHttp();
   constructor(private http: HttpClient) {}
 
   uploadFile(file: File, token?:string): Observable<any> {
@@ -144,7 +146,29 @@ export class FileUploadServiceService {
   }
 
 
+  async takeExemple(path:any) {
+    // this.http.get()
+    const filePath:any = 'file:///somepicture.jpg';
+    const name = 'picture';
 
+    // e.g. for multiple files
+    // const filePath = ['file:///somepicture.jpg', 'file:///somedocument.doc'];
+    // const name = ['picture', 'document'];
+    this.http_.uploadFile(
+      this.url,
+      {
+        date: '10/12/2023'
+      },
+      {
+        Authorization: 'OAuth2: token'
+      },
+      filePath, name
+    ).then((response) => {
+      console.log('response', response)
+    }).catch((erreur)=>{
+      console.log('erreur', erreur)
+    })
+  }
 
 
 

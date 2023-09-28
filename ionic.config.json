@@ -1,14 +1,22 @@
 {
   "name": "sendphoto",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
-  "type": "angular" ,
+  "type": "angular",
   "allowMixedContent": true,
   "server": {
     "allowNavigation": []
   },
   "android": {
     "allowMixedContent": true
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
   }
 }
