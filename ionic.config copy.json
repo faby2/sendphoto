@@ -11,11 +11,9 @@
   },
   "android": {
     "allowMixedContent": true
-  },
+  }
+  ,
   "plugins": {
-    "CapacitorCookies": {
-      "enabled": true
-    },
     "CapacitorHttp": {
       "enabled": true
     }

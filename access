@@ -83,3 +83,7 @@ const file = new File([blob], "Name", {
     lastModified: moment().unix(),
     type: blob.type,
 })
+
+
+ionic integrations enable cordova
+

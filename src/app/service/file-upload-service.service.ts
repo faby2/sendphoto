@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { Observable } from 'rxjs';
 import { ApproovHttp   } from '@awesome-cordova-plugins/approov-advanced-http/ngx';
+import { Http, HttpUploadFileOptions, HttpUploadFileResult } from '@capacitor-community/http';
+// import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ import { ApproovHttp   } from '@awesome-cordova-plugins/approov-advanced-http/ng
 export class FileUploadServiceService {
   url : string = 'https://www.monade-alimentaire.fr/api/photos'
   http_ : ApproovHttp  = new ApproovHttp();
-  constructor(private http: HttpClient) {}
+  // http__ : http = new Http()
+  constructor( private http__: HttpClient, ) {}
 
   uploadFile(file: File, token?:string): Observable<any> {
 
@@ -36,7 +39,7 @@ export class FileUploadServiceService {
       // mimeType: "multipart/form-data",
       contentType: false,
     };
-    return this.http.post(this.url, formData, options);
+    return this.http__.post(this.url, formData, options);
   }
 
   sendPhotoDouble(file_image: any,file2 : File, token : string) {
@@ -145,6 +148,31 @@ export class FileUploadServiceService {
     this.convertFileToBase64(file);
   }
 
+  async takeExemple2(filepath:any, token : any) {
+
+    const headers = {
+      // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
+      "Authorization": "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+      // "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
+      // 'Content-Type': 'multipart/form-data',
+      // 'Accept': 'plain/text',
+    };
+    const fileoption : HttpUploadFileOptions   = {
+      url : this.url ,
+      params : { date : '10/12/2023' },
+      filePath : filepath,
+      name : 'photo',
+      headers : headers
+    }
+
+    await Http.uploadFile(fileoption).then((Response :  HttpUploadFileResult ) =>{
+      console.log('ok', Response)
+    } ).catch((error)=>{
+      console.log('error', error)
+    })
+
+  }
 
   async takeExemple(path:any) {
     // this.http.get()

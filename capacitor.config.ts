@@ -22,8 +22,13 @@ const config: CapacitorConfig = {
   //   ]
   // },
   plugins: {
-    CapacitorHttp: {
-      enabled: true
+    plugins: {
+      CapacitorCookies: {
+        enabled: true
+      },
+      CapacitorHttp: {
+        enabled: true
+      }
     }
   }
 };

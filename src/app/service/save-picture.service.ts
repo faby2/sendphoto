@@ -23,7 +23,9 @@ export class SavePictureService {
   photos : Array <UserPhoto> = new Array<UserPhoto>()
 
   constructor( private fileUploadService : FileUploadServiceService ,
-    private storageService : AuthstorageService ,) { }
+    private storageService : AuthstorageService ,) {
+
+    }
 
 
   convertBlobToBase64(blob: Blob) {
@@ -44,7 +46,9 @@ export class SavePictureService {
     };
 
     const originalPhoto = await Camera.getPhoto(options);
-    await this.fileUploadService.takeExemple(originalPhoto.path)
+    // await this.fileUploadService.takeExemple(originalPhoto.path)
+    const token : any = await this.storageService.getToken()
+    await this.fileUploadService.takeExemple2(originalPhoto.path, token)
   }
 
 
