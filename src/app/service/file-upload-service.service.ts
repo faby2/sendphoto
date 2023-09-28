@@ -91,8 +91,8 @@ export class FileUploadServiceService {
     // console.log('file', this.convertFileToBase64(file))
     // debugger
     const formData = new FormData();
-    formData.append('photo', file);
-    formData.append('date', '15/12/2023');
+    formData.append('photo', file,'test.jpg');
+    // formData.append('date', '15/12/2023');
     const headers = {
       // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
       "Authorization": "Bearer " + token,
@@ -106,12 +106,8 @@ export class FileUploadServiceService {
       // headers: { 'X-Fake-Header': 'Fake-Value' },
       params: { 'date': '1/12/2023'  },
       // responseType:'json'  ,
-      dataType : 'file',
-      data :
-      // JSON.stringify(
-        {
-        photo : file
-      }
+      dataType : 'formData',
+      data : JSON.stringify(formData)
       // )
       ,
       headers : headers

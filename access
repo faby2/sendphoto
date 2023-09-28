@@ -67,3 +67,19 @@ champs requis : email,password
 pour les photos
 lien : https://www.monade-alimentaire.fr/api/photos
 token requis
+
+import {decode} from "base64-arraybuffer";
+
+const cameraPhoto = await Camera.getPhoto({
+    resultType: CameraResultType.Base64,
+}
+
+const blob = new Blob([new Uint8Array(decode(cameraPhoto.base64String))], {
+    type: `image/${cameraPhoto.format}`,
+});
+and if it needs to be converted to a file:
+
+const file = new File([blob], "Name", {
+    lastModified: moment().unix(),
+    type: blob.type,
+})
