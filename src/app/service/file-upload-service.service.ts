@@ -1,10 +1,23 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { Observable } from 'rxjs';
 import { ApproovHttp   } from '@awesome-cordova-plugins/approov-advanced-http/ngx';
 import { Http, HttpUploadFileOptions, HttpUploadFileResult } from '@capacitor-community/http';
+import { readBlobAsBase64 } from '../utils/utils';
 // import { error } from 'console';
+
+const doPost = async (token:any, url : any, data: any) => {
+  const ret = await Http.request({
+    method: 'POST',
+    url: ""+ url +"",
+    headers: {
+      "Authorization": "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+    },
+    data: data,
+  });
+};
 
 @Injectable({
   providedIn: 'root'
@@ -112,7 +125,9 @@ export class FileUploadServiceService {
       params: { 'date': '1/12/2023'  },
       // responseType:'json'  ,
       dataType : 'formData',
-      data : JSON.stringify(formData)
+      data : {
+        'photo' : file
+      }
       // )
       ,
       headers : headers
@@ -163,10 +178,63 @@ export class FileUploadServiceService {
       params : { date : '10/12/2023' },
       filePath : filepath,
       name : 'photo',
-      headers : headers
+      headers : headers ,
+    }
+    await Http.uploadFile(fileoption).then((Response :  HttpUploadFileResult ) =>{
+      console.log('ok', Response)
+    } ).catch((error)=>{
+      console.log('error', error)
+    })
+
+  }
+
+  async double() {
+
+  }
+
+ serialize (data : any) {
+    let obj: any = {} ;
+    for (let [key, value] of data) {
+      if (obj[key] !== undefined) {
+        if (!Array.isArray(obj[key])) {
+          obj[key] = [obj[key]];
+        }
+        obj[key].push(value);
+      } else {
+        obj[key] = value;
+      }
+    }
+    return obj;
+  }
+
+  async takeExempleDoule(blob1:any, blob2:any , token : any) {
+
+    const headers = {
+      // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
+      "Authorization": "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+      // "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
+      // 'Content-Type': 'multipart/form-data',
+      // 'Accept': 'plain/text',
+    };
+
+    const data : FormData = new FormData()
+    data.append('photo1', await readBlobAsBase64(blob1), 'photo1.jpg');
+    data.append('photo2', blob2, 'photo1.jpg');
+
+    const fileoption : HttpOptions    = {
+      url : this.url ,
+      params : {
+        date : '10/12/2023',
+        repas : 'breakfast'
+      },
+      // filePath : filepath,
+      data : data,
+      headers : headers ,
     }
 
-    await Http.uploadFile(fileoption).then((Response :  HttpUploadFileResult ) =>{
+
+    await Http.post(fileoption).then((Response ) =>{
       console.log('ok', Response)
     } ).catch((error)=>{
       console.log('error', error)

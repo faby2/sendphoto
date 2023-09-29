@@ -40,7 +40,7 @@ export class SavePictureService {
   }
 
 
-  async takePhoto() {
+  async takePhotoM() { // mety
     const options = {
       resultType: CameraResultType.Uri
     };
@@ -83,6 +83,29 @@ export class SavePictureService {
     console.log(photoPath);
   }
 
+  async takePhoto() {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+      quality: 100,
+    });
+
+    const blob =  this.getblob(photo)
+    const token : any = await this.storageService.getToken()
+
+   await this.fileUploadService.takeExempleDoule(blob,blob,token)
+
+    // this.fileUploadService.sendPhotoDouble2(file, '' as any , token).then(async (response)=>{
+    // //  await loading.dismiss()
+    //   console.log('response',JSON.stringify(response))
+    // }).catch(async(error)=>{
+    //   // await loading.dismiss()
+    //   console.log('error',JSON.stringify(error))
+    // })
+    // return this.modalCtrl.dismiss(this.name, 'confirm');
+
+  };
+
 
   async takePhoto4() {
     const photo = await Camera.getPhoto({
@@ -103,6 +126,15 @@ export class SavePictureService {
     // return this.modalCtrl.dismiss(this.name, 'confirm');
 
   };
+
+    getblob(cameraPhoto64 : Photo) {
+
+    const blob = new Blob([new Uint8Array(decode(cameraPhoto64.base64String!))], {
+      type: `image/${cameraPhoto64.format}`,
+    });
+
+    return blob
+  }
 
   convertToblob(cameraPhoto64 : Photo) {
 
