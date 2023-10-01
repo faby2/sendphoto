@@ -207,34 +207,80 @@ export class FileUploadServiceService {
     return obj;
   }
 
-  async takeExempleDoule(blob1:any, blob2:any , token : any) {
+  async takeExempleDouble(filepath:any, token : any) {
+
+
 
     const headers = {
       // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
-      "Authorization": "Bearer " + token,
+      'Authorization': "Bearer " + token,
       'Content-Type': 'multipart/form-data'
       // "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
       // 'Content-Type': 'multipart/form-data',
       // 'Accept': 'plain/text',
     };
 
-    const data : FormData = new FormData()
-    data.append('photo1', await readBlobAsBase64(blob1), 'photo1.jpg');
-    data.append('photo2', blob2, 'photo1.jpg');
+    const fileoption : HttpUploadFileOptions   = {
+      'url' : this.url ,
+      'params' : { 'date' : '10/12/2023' },
+      'filePath' : filepath,
+      'name' : 'photo',
+      'headers' : headers ,
+    }
+    await Http.uploadFile(fileoption).then((Response :  HttpUploadFileResult ) =>{
+      console.log('ok', Response)
+    } ).catch((error)=>{
+      console.log('error', error)
+    })
+  }
+  
+  async takeExempleDoule(blob1:any, blob2:any , token : any) {
 
-    const fileoption : HttpOptions    = {
-      url : this.url ,
+    const headers = {
+      // "Authorization": "Bearer 58|X3NhMrBqDweOlcVuqhEqU9MMVCiErNbeg5acKS1V",
+      "Authorization": "Bearer " + token,
+      // 'Content-Type': 'application/json'
+      // "Authorization": "Bearer 59|qCgs1JYA098GhQsSfVcXskKWo9lukqLaRAxdzxGK",
+      'Content-Type': 'multipart/form-data; charset=UTF-8'
+      // 'Accept': 'plain/text',
+    };
+
+    // formData.append('file', fs.readFileSync(pdfPath), {
+    //   filename: 'xxxxxxxx.pdf',
+    //   contentType: 'application/pdf'
+    // })
+    console.log('eto',blob1)
+    const data : FormData = new FormData()
+    // let photo : any  = await readBlobAsBase64(blob1)
+    data.append('photo1', blob1);
+    data.append('photo2', blob2);
+
+    // const headers :any = new HttpHeaders(
+    //   {
+    //     'Content-Type': 'multipart/form-data',
+    //     "Authorization": "Bearer " + token
+    //   })
+
+    // const url : any = new URL('https://www.monade-alimentaire.fr/api/photos?date=10\/12\/2023&repas=breakfast');
+    const fileoption : HttpOptions = {
+      method : 'POST',
+      url : "" + this.url  +"" ,
       params : {
         date : '10/12/2023',
         repas : 'breakfast'
       },
       // filePath : filepath,
-      data : data,
+      data :data ,
       headers : headers ,
     }
 
 
-    await Http.post(fileoption).then((Response ) =>{
+
+    // const formData = new FormData();
+    // formData.append('phot', options.blob || 'undefined');
+   
+
+     Http.post(fileoption).then((Response ) => {
       console.log('ok', Response)
     } ).catch((error)=>{
       console.log('error', error)

@@ -93,7 +93,7 @@ export class SavePictureService {
     const blob =  this.getblob(photo)
     const token : any = await this.storageService.getToken()
 
-   await this.fileUploadService.takeExempleDoule(blob,blob,token)
+   this.fileUploadService.takeExempleDoule(blob,blob,token)
 
     // this.fileUploadService.sendPhotoDouble2(file, '' as any , token).then(async (response)=>{
     // //  await loading.dismiss()
